@@ -5,15 +5,46 @@ A React Native + Expo mobile app that teaches coding concepts through interactiv
 ## 📱 Features
 
 ### Core Features
-- **📚 Topic Browser**: Explore 8 comprehensive coding topics
+- **📚 Topic Browser**: Explore 27 comprehensive coding topics
+  
+  **🧠 Coding Patterns** (12 topics):
   - Time & Space Complexity
   - Two Pointer Pattern
   - Sliding Window
+  - Tortoise & Hare (Fast-Slow Pointers)
+  - Two Pass Pattern
+  - Bit Manipulation
+  - Cyclic Sort
+  - Hash Tables
+  - Searching & Sorting
+  - Stacks & Queues
+  - Linked Lists
+  - Recursion & Backtracking
+  
+  **📊 Data Structures** (4 topics):
   - Arrays
   - Strings
   - Trees
   - Graphs
+  
+  **🧮 Advanced Topics** (3 topics):
   - Dynamic Programming
+  - Heaps
+  - Distributed Systems
+  
+  **🏗️ System Design** (3 topics):
+  - System Design Overview
+  - Networking & API Design
+  - Scalable Systems
+  
+  **💾 Databases** (1 topic):
+  - Databases (SQL & NoSQL)
+  
+  **💬 Behavioral Interviews** (4 topics):
+  - Behavioral Interview Overview
+  - Behavioral Theory
+  - Behavioral Tactics
+  - Practice & Mock Interviews
 
 - **🔄 Interactive Flashcards**: 
   - Flip animation to reveal answers
@@ -147,50 +178,152 @@ coder-helper/
 
 ## 📚 Topics Covered
 
-### 1. Time & Space Complexity
+### 🧠 Coding Patterns & Algorithms
+
+#### 1. Time & Space Complexity
 - Big O notation fundamentals
 - Complexity analysis examples
 - Common time complexities
 
-### 2. Two Pointer Pattern
+#### 2. Two Pointer Pattern
 - Opposite direction pointers
 - Fast and slow pointers
 - Array manipulation techniques
 
-### 3. Sliding Window
+#### 3. Sliding Window
 - Fixed window size
 - Variable window size
 - Substring problems
 
-### 4. Arrays
+#### 4. Tortoise & Hare (Fast-Slow Pointers)
+- Floyd's cycle detection
+- Finding middle elements
+- Cycle detection in linked lists
+
+#### 5. Two Pass Pattern
+- Iterating through data twice
+- Product of array except self
+- Gas station problems
+
+#### 6. Bit Manipulation
+- Bitwise operators (AND, OR, XOR, NOT)
+- Common bit manipulation tricks
+- Single number and missing number problems
+
+#### 7. Cyclic Sort
+- Sorting arrays with numbers in range [1, n]
+- Finding missing and duplicate numbers
+- In-place sorting with O(n) time
+
+### 📊 Core Data Structures
+
+#### 8. Hash Tables
+- Hash maps and hash sets
+- Two sum and anagram problems
+- LRU cache implementation
+
+#### 9. Searching & Sorting
+- Binary search and variations
+- QuickSort and MergeSort
+- Search in rotated sorted array
+
+#### 10. Stacks & Queues
+- LIFO and FIFO operations
+- Monotonic stack patterns
+- Valid parentheses and daily temperatures
+
+#### 11. Linked Lists
+- Singly and doubly linked lists
+- Reverse linked list
+- Merge sorted lists and detect cycles
+
+#### 12. Arrays
 - Array operations
 - In-place modifications
-- Classic algorithms (Kadane's, etc.)
+- Kadane's algorithm
 
-### 5. Strings
+#### 13. Strings
 - String manipulation
 - Pattern matching
 - Palindromes and anagrams
 
-### 6. Trees
-- Binary trees
+#### 14. Trees
+- Binary trees and BST
 - Tree traversals (DFS, BFS)
-- Binary Search Trees
+- Lowest common ancestor
 
-### 7. Graphs
+#### 15. Graphs
 - Graph representations
 - DFS and BFS traversal
-- Shortest path algorithms
+- Dijkstra's and topological sort
 
-### 8. Dynamic Programming
-- Memoization
-- Tabulation
+#### 16. Heaps
+- Min and max heaps
+- Priority queues
+- Kth largest element and median finder
+
+#### 17. Dynamic Programming
+- Memoization and tabulation
 - Classic DP problems
+- Fibonacci, LCS, knapsack
+
+#### 18. Recursion & Backtracking
+- Recursive problem solving
+- N-Queens and permutations
+- Combination sum and word search
+
+### 🏗️ System Design & Architecture
+
+#### 19. System Design Overview
+- Scalability principles
+- CAP theorem
+- Load balancing and consistent hashing
+
+#### 20. Networking & API Design
+- RESTful APIs
+- HTTP methods and status codes
+- API versioning and authentication
+
+#### 21. Scalable Systems
+- Caching strategies (Redis, Memcached)
+- CDN and content delivery
+- Database sharding and replication
+
+#### 22. Databases
+- SQL vs NoSQL
+- Database indexing
+- Query optimization
+
+#### 23. Distributed Systems
+- Eventual consistency
+- Message queues (RabbitMQ, Kafka)
+- Distributed locks
+
+### 💬 Behavioral Interviews
+
+#### 24. Behavioral Interview Overview
+- STAR method framework
+- Common question categories
+- Preparation strategies
+
+#### 25. Behavioral Theory
+- Leadership principles
+- Competency framework
+- Assessment criteria
+
+#### 26. Behavioral Tactics
+- Handling difficult questions
+- Body language and presence
+- Virtual interview tips
+
+#### 27. Practice & Mock Interviews
+- 50 common behavioral questions
+- Mock interview scenarios
+- Feedback and practice exercises
 
 ## 🎯 Future Enhancements
 
 - [ ] Social features (share progress, compete with friends)
-- [ ] More topics (Heaps, Tries, Backtracking, etc.)
 - [ ] Spaced repetition algorithm
 - [ ] Custom flashcard creation
 - [ ] Code playground for testing snippets

@@ -5,7 +5,7 @@ A React Native + Expo mobile app that teaches coding concepts through interactiv
 ## 📱 Features
 
 ### Core Features
-- **📚 Topic Browser**: Explore 26 comprehensive coding topics
+- **📚 Topic Browser**: Explore 27 comprehensive coding topics
   
   **🧠 Coding Patterns** (12 topics):
   - Time & Space Complexity

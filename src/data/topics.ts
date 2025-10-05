@@ -1465,6 +1465,2277 @@ function minDistance(word1, word2) {
       },
     ],
   },
+  {
+    id: 'fast-slow-pointers',
+    name: 'Tortoise & Hare (Fast-Slow Pointers)',
+    description: 'Detect cycles and find middle elements using two-speed pointers',
+    icon: '🐢',
+    flashcards: [
+      {
+        id: 'fsp-1',
+        topicId: 'fast-slow-pointers',
+        question: 'What is the Tortoise and Hare algorithm?',
+        answer: 'Also known as Floyd\'s cycle detection algorithm, it uses two pointers moving at different speeds (slow moves 1 step, fast moves 2 steps) to detect cycles in linked lists.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'fsp-2',
+        topicId: 'fast-slow-pointers',
+        question: 'How to find the middle of a linked list?',
+        answer: 'Use slow and fast pointers. When fast reaches the end, slow will be at the middle. Fast moves 2 steps, slow moves 1 step.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'fsp-3',
+        topicId: 'fast-slow-pointers',
+        question: 'How does cycle detection work?',
+        answer: 'If there\'s a cycle, fast pointer will eventually meet slow pointer. If no cycle, fast pointer reaches null/end.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'fsp-4',
+        topicId: 'fast-slow-pointers',
+        question: 'What problems use fast-slow pointers?',
+        answer: 'Cycle detection, finding cycle start, middle element, palindrome linked list, and happy number problems.',
+        difficulty: 'medium',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'fsp-ct-1',
+        topicId: 'fast-slow-pointers',
+        title: 'Fast-Slow Pointer Patterns',
+        description: 'Common applications of the tortoise and hare algorithm',
+        python: `# Detect Cycle in Linked List
+def has_cycle(head):
+    if not head or not head.next:
+        return False
+    
+    slow = head
+    fast = head
+    
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    
+    return False
+
+# Find Middle of Linked List
+def find_middle(head):
+    if not head:
+        return None
+    
+    slow = head
+    fast = head
+    
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+    
+    return slow
+
+# Find Cycle Start
+def find_cycle_start(head):
+    if not head or not head.next:
+        return None
+    
+    slow = head
+    fast = head
+    
+    # Find meeting point
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            break
+    
+    if not fast or not fast.next:
+        return None
+    
+    # Find cycle start
+    slow = head
+    while slow != fast:
+        slow = slow.next
+        fast = fast.next
+    
+    return slow
+
+# Happy Number
+def is_happy(n):
+    def get_next(num):
+        total = 0
+        while num > 0:
+            digit = num % 10
+            total += digit * digit
+            num //= 10
+        return total
+    
+    slow = n
+    fast = n
+    
+    while True:
+        slow = get_next(slow)
+        fast = get_next(get_next(fast))
+        if fast == 1:
+            return True
+        if slow == fast:
+            return False`,
+        javascript: `// Detect Cycle in Linked List
+function hasCycle(head) {
+    if (!head || !head.next) {
+        return false;
+    }
+    
+    let slow = head;
+    let fast = head;
+    
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow === fast) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// Find Middle of Linked List
+function findMiddle(head) {
+    if (!head) {
+        return null;
+    }
+    
+    let slow = head;
+    let fast = head;
+    
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    
+    return slow;
+}
+
+// Find Cycle Start
+function findCycleStart(head) {
+    if (!head || !head.next) {
+        return null;
+    }
+    
+    let slow = head;
+    let fast = head;
+    
+    // Find meeting point
+    while (fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (slow === fast) {
+            break;
+        }
+    }
+    
+    if (!fast || !fast.next) {
+        return null;
+    }
+    
+    // Find cycle start
+    slow = head;
+    while (slow !== fast) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+    
+    return slow;
+}
+
+// Happy Number
+function isHappy(n) {
+    function getNext(num) {
+        let total = 0;
+        while (num > 0) {
+            const digit = num % 10;
+            total += digit * digit;
+            num = Math.floor(num / 10);
+        }
+        return total;
+    }
+    
+    let slow = n;
+    let fast = n;
+    
+    while (true) {
+        slow = getNext(slow);
+        fast = getNext(getNext(fast));
+        if (fast === 1) {
+            return true;
+        }
+        if (slow === fast) {
+            return false;
+        }
+    }
+}`,
+      },
+    ],
+  },
+  {
+    id: 'two-pass',
+    name: 'Two Pass Pattern',
+    description: 'Solve problems by iterating through data twice for efficiency',
+    icon: '↔️',
+    flashcards: [
+      {
+        id: 'tp2-1',
+        topicId: 'two-pass',
+        question: 'What is the Two Pass pattern?',
+        answer: 'A technique where you iterate through the data twice: first to gather information, second to process based on that information.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'tp2-2',
+        topicId: 'two-pass',
+        question: 'When to use Two Pass?',
+        answer: 'When you need global information before processing individual elements, or when calculating relative positions/values.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'tp2-3',
+        topicId: 'two-pass',
+        question: 'Two Pass vs Single Pass?',
+        answer: 'Two pass is O(2n) = O(n) but requires complete dataset knowledge. Single pass is O(n) but may need extra space or not work for all problems.',
+        difficulty: 'medium',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'tp2-ct-1',
+        topicId: 'two-pass',
+        title: 'Two Pass Examples',
+        description: 'Common two pass patterns',
+        python: `# Product of Array Except Self
+def product_except_self(nums):
+    n = len(nums)
+    result = [1] * n
+    
+    # First pass: left products
+    left = 1
+    for i in range(n):
+        result[i] = left
+        left *= nums[i]
+    
+    # Second pass: multiply by right products
+    right = 1
+    for i in range(n - 1, -1, -1):
+        result[i] *= right
+        right *= nums[i]
+    
+    return result
+
+# Gas Station
+def can_complete_circuit(gas, cost):
+    if sum(gas) < sum(cost):
+        return -1
+    
+    # First pass: find total gas and cost
+    total_gas = sum(gas)
+    total_cost = sum(cost)
+    
+    if total_gas < total_cost:
+        return -1
+    
+    # Second pass: find starting point
+    start = 0
+    tank = 0
+    
+    for i in range(len(gas)):
+        tank += gas[i] - cost[i]
+        if tank < 0:
+            start = i + 1
+            tank = 0
+    
+    return start
+
+# Replace Elements with Greatest on Right
+def replace_elements(arr):
+    n = len(arr)
+    result = [-1] * n
+    
+    # First pass: find max from right
+    max_right = -1
+    for i in range(n - 1, -1, -1):
+        result[i] = max_right
+        max_right = max(max_right, arr[i])
+    
+    return result`,
+        javascript: `// Product of Array Except Self
+function productExceptSelf(nums) {
+    const n = nums.length;
+    const result = new Array(n).fill(1);
+    
+    // First pass: left products
+    let left = 1;
+    for (let i = 0; i < n; i++) {
+        result[i] = left;
+        left *= nums[i];
+    }
+    
+    // Second pass: multiply by right products
+    let right = 1;
+    for (let i = n - 1; i >= 0; i--) {
+        result[i] *= right;
+        right *= nums[i];
+    }
+    
+    return result;
+}
+
+// Gas Station
+function canCompleteCircuit(gas, cost) {
+    const totalGas = gas.reduce((a, b) => a + b, 0);
+    const totalCost = cost.reduce((a, b) => a + b, 0);
+    
+    if (totalGas < totalCost) {
+        return -1;
+    }
+    
+    // Second pass: find starting point
+    let start = 0;
+    let tank = 0;
+    
+    for (let i = 0; i < gas.length; i++) {
+        tank += gas[i] - cost[i];
+        if (tank < 0) {
+            start = i + 1;
+            tank = 0;
+        }
+    }
+    
+    return start;
+}
+
+// Replace Elements with Greatest on Right
+function replaceElements(arr) {
+    const n = arr.length;
+    const result = new Array(n).fill(-1);
+    
+    // First pass: find max from right
+    let maxRight = -1;
+    for (let i = n - 1; i >= 0; i--) {
+        result[i] = maxRight;
+        maxRight = Math.max(maxRight, arr[i]);
+    }
+    
+    return result;
+}`,
+      },
+    ],
+  },
+  {
+    id: 'bit-manipulation',
+    name: 'Bit Manipulation',
+    description: 'Master bitwise operations and binary number techniques',
+    icon: '0️⃣',
+    flashcards: [
+      {
+        id: 'bm-1',
+        topicId: 'bit-manipulation',
+        question: 'What are common bitwise operators?',
+        answer: 'AND (&), OR (|), XOR (^), NOT (~), Left Shift (<<), Right Shift (>>). Used for efficient operations at the bit level.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'bm-2',
+        topicId: 'bit-manipulation',
+        question: 'What is XOR\'s special property?',
+        answer: 'XOR of a number with itself is 0. XOR is commutative and associative. Used to find single number, swap variables without temp.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'bm-3',
+        topicId: 'bit-manipulation',
+        question: 'How to check if a number is power of 2?',
+        answer: 'n & (n-1) == 0. Powers of 2 have only one bit set. Example: 8 (1000) & 7 (0111) = 0.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'bm-4',
+        topicId: 'bit-manipulation',
+        question: 'How to count set bits?',
+        answer: 'Use Brian Kernighan\'s algorithm: n & (n-1) removes rightmost set bit. Count iterations until n becomes 0.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'bm-ct-1',
+        topicId: 'bit-manipulation',
+        title: 'Bit Manipulation Techniques',
+        description: 'Essential bitwise operations and patterns',
+        python: `# Check if Power of 2
+def is_power_of_two(n):
+    return n > 0 and (n & (n - 1)) == 0
+
+# Count Set Bits
+def count_set_bits(n):
+    count = 0
+    while n:
+        n &= (n - 1)  # Remove rightmost set bit
+        count += 1
+    return count
+
+# Single Number (all others appear twice)
+def single_number(nums):
+    result = 0
+    for num in nums:
+        result ^= num
+    return result
+
+# Get, Set, Clear, Toggle bit
+def get_bit(num, i):
+    return (num & (1 << i)) != 0
+
+def set_bit(num, i):
+    return num | (1 << i)
+
+def clear_bit(num, i):
+    return num & ~(1 << i)
+
+def toggle_bit(num, i):
+    return num ^ (1 << i)
+
+# Swap two numbers without temp
+def swap(a, b):
+    a ^= b
+    b ^= a
+    a ^= b
+    return a, b
+
+# Find Missing Number
+def missing_number(nums):
+    n = len(nums)
+    xor = 0
+    
+    # XOR all numbers from 0 to n
+    for i in range(n + 1):
+        xor ^= i
+    
+    # XOR with array elements
+    for num in nums:
+        xor ^= num
+    
+    return xor
+
+# Reverse Bits
+def reverse_bits(n):
+    result = 0
+    for i in range(32):
+        bit = (n >> i) & 1
+        result |= (bit << (31 - i))
+    return result`,
+        javascript: `// Check if Power of 2
+function isPowerOfTwo(n) {
+    return n > 0 && (n & (n - 1)) === 0;
+}
+
+// Count Set Bits
+function countSetBits(n) {
+    let count = 0;
+    while (n) {
+        n &= (n - 1);  // Remove rightmost set bit
+        count++;
+    }
+    return count;
+}
+
+// Single Number (all others appear twice)
+function singleNumber(nums) {
+    let result = 0;
+    for (const num of nums) {
+        result ^= num;
+    }
+    return result;
+}
+
+// Get, Set, Clear, Toggle bit
+function getBit(num, i) {
+    return (num & (1 << i)) !== 0;
+}
+
+function setBit(num, i) {
+    return num | (1 << i);
+}
+
+function clearBit(num, i) {
+    return num & ~(1 << i);
+}
+
+function toggleBit(num, i) {
+    return num ^ (1 << i);
+}
+
+// Swap two numbers without temp
+function swap(a, b) {
+    a ^= b;
+    b ^= a;
+    a ^= b;
+    return [a, b];
+}
+
+// Find Missing Number
+function missingNumber(nums) {
+    const n = nums.length;
+    let xor = 0;
+    
+    // XOR all numbers from 0 to n
+    for (let i = 0; i <= n; i++) {
+        xor ^= i;
+    }
+    
+    // XOR with array elements
+    for (const num of nums) {
+        xor ^= num;
+    }
+    
+    return xor;
+}
+
+// Reverse Bits
+function reverseBits(n) {
+    let result = 0;
+    for (let i = 0; i < 32; i++) {
+        const bit = (n >> i) & 1;
+        result |= (bit << (31 - i));
+    }
+    return result >>> 0; // Convert to unsigned
+}`,
+      },
+    ],
+  },
+  {
+    id: 'cyclic-sort',
+    name: 'Cyclic Sort',
+    description: 'Sort arrays with numbers in a given range efficiently',
+    icon: '🔄',
+    flashcards: [
+      {
+        id: 'cs-1',
+        topicId: 'cyclic-sort',
+        question: 'What is Cyclic Sort?',
+        answer: 'An in-place sorting algorithm for arrays containing numbers in a given range (1 to n). Places each number at its correct index.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'cs-2',
+        topicId: 'cyclic-sort',
+        question: 'When to use Cyclic Sort?',
+        answer: 'When dealing with arrays containing numbers in range [1, n] or [0, n-1]. Find missing numbers, duplicates, or first K missing positive.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'cs-3',
+        topicId: 'cyclic-sort',
+        question: 'Time complexity of Cyclic Sort?',
+        answer: 'O(n) time and O(1) space. Each number is visited at most twice - once to place it and once when already in position.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'cs-ct-1',
+        topicId: 'cyclic-sort',
+        title: 'Cyclic Sort Patterns',
+        description: 'Applications of cyclic sort algorithm',
+        python: `# Basic Cyclic Sort
+def cyclic_sort(nums):
+    i = 0
+    while i < len(nums):
+        correct_index = nums[i] - 1
+        if nums[i] != nums[correct_index]:
+            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        else:
+            i += 1
+    return nums
+
+# Find Missing Number
+def find_missing_number(nums):
+    i = 0
+    n = len(nums)
+    
+    while i < n:
+        correct_index = nums[i]
+        if nums[i] < n and nums[i] != nums[correct_index]:
+            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        else:
+            i += 1
+    
+    # Find first missing
+    for i in range(n):
+        if nums[i] != i:
+            return i
+    
+    return n
+
+# Find All Missing Numbers
+def find_all_missing(nums):
+    i = 0
+    while i < len(nums):
+        correct_index = nums[i] - 1
+        if nums[i] != nums[correct_index]:
+            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        else:
+            i += 1
+    
+    missing = []
+    for i in range(len(nums)):
+        if nums[i] != i + 1:
+            missing.append(i + 1)
+    
+    return missing
+
+# Find Duplicate Number
+def find_duplicate(nums):
+    i = 0
+    while i < len(nums):
+        correct_index = nums[i] - 1
+        if nums[i] != nums[correct_index]:
+            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        else:
+            i += 1
+    
+    for i in range(len(nums)):
+        if nums[i] != i + 1:
+            return nums[i]
+    
+    return -1
+
+# Find All Duplicates
+def find_all_duplicates(nums):
+    i = 0
+    while i < len(nums):
+        correct_index = nums[i] - 1
+        if nums[i] != nums[correct_index]:
+            nums[i], nums[correct_index] = nums[correct_index], nums[i]
+        else:
+            i += 1
+    
+    duplicates = []
+    for i in range(len(nums)):
+        if nums[i] != i + 1:
+            duplicates.append(nums[i])
+    
+    return duplicates`,
+        javascript: `// Basic Cyclic Sort
+function cyclicSort(nums) {
+    let i = 0;
+    while (i < nums.length) {
+        const correctIndex = nums[i] - 1;
+        if (nums[i] !== nums[correctIndex]) {
+            [nums[i], nums[correctIndex]] = [nums[correctIndex], nums[i]];
+        } else {
+            i++;
+        }
+    }
+    return nums;
+}
+
+// Find Missing Number
+function findMissingNumber(nums) {
+    let i = 0;
+    const n = nums.length;
+    
+    while (i < n) {
+        const correctIndex = nums[i];
+        if (nums[i] < n && nums[i] !== nums[correctIndex]) {
+            [nums[i], nums[correctIndex]] = [nums[correctIndex], nums[i]];
+        } else {
+            i++;
+        }
+    }
+    
+    // Find first missing
+    for (let i = 0; i < n; i++) {
+        if (nums[i] !== i) {
+            return i;
+        }
+    }
+    
+    return n;
+}
+
+// Find All Missing Numbers
+function findAllMissing(nums) {
+    let i = 0;
+    while (i < nums.length) {
+        const correctIndex = nums[i] - 1;
+        if (nums[i] !== nums[correctIndex]) {
+            [nums[i], nums[correctIndex]] = [nums[correctIndex], nums[i]];
+        } else {
+            i++;
+        }
+    }
+    
+    const missing = [];
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== i + 1) {
+            missing.push(i + 1);
+        }
+    }
+    
+    return missing;
+}
+
+// Find Duplicate Number
+function findDuplicate(nums) {
+    let i = 0;
+    while (i < nums.length) {
+        const correctIndex = nums[i] - 1;
+        if (nums[i] !== nums[correctIndex]) {
+            [nums[i], nums[correctIndex]] = [nums[correctIndex], nums[i]];
+        } else {
+            i++;
+        }
+    }
+    
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== i + 1) {
+            return nums[i];
+        }
+    }
+    
+    return -1;
+}
+
+// Find All Duplicates
+function findAllDuplicates(nums) {
+    let i = 0;
+    while (i < nums.length) {
+        const correctIndex = nums[i] - 1;
+        if (nums[i] !== nums[correctIndex]) {
+            [nums[i], nums[correctIndex]] = [nums[correctIndex], nums[i]];
+        } else {
+            i++;
+        }
+    }
+    
+    const duplicates = [];
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== i + 1) {
+            duplicates.push(nums[i]);
+        }
+    }
+    
+    return duplicates;
+}`,
+      },
+    ],
+  },
+  {
+    id: 'hash-tables',
+    name: 'Hash Tables',
+    description: 'Fast lookups and storage with hash maps and sets',
+    icon: '#️⃣',
+    flashcards: [
+      {
+        id: 'ht-1',
+        topicId: 'hash-tables',
+        question: 'What is a Hash Table?',
+        answer: 'A data structure that maps keys to values using a hash function. Provides O(1) average-case insertion, deletion, and lookup.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'ht-2',
+        topicId: 'hash-tables',
+        question: 'How does collision handling work?',
+        answer: 'Two main methods: Chaining (linked list at each bucket) and Open Addressing (probe for next empty slot). Chaining is more common.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'ht-3',
+        topicId: 'hash-tables',
+        question: 'When to use HashMap vs HashSet?',
+        answer: 'HashMap stores key-value pairs for mapping. HashSet stores unique elements for membership testing. Both use hashing.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'ht-4',
+        topicId: 'hash-tables',
+        question: 'What is load factor?',
+        answer: 'Ratio of elements to buckets. When load factor exceeds threshold (typically 0.75), the hash table resizes to maintain O(1) operations.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'ht-ct-1',
+        topicId: 'hash-tables',
+        title: 'Hash Table Applications',
+        description: 'Common hash table patterns and problems',
+        python: `# Two Sum using HashMap
+def two_sum(nums, target):
+    seen = {}
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []
+
+# Group Anagrams
+def group_anagrams(strs):
+    anagrams = {}
+    for s in strs:
+        key = ''.join(sorted(s))
+        if key not in anagrams:
+            anagrams[key] = []
+        anagrams[key].append(s)
+    return list(anagrams.values())
+
+# First Non-Repeating Character
+def first_non_repeating(s):
+    char_count = {}
+    
+    # Count frequencies
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+    
+    # Find first non-repeating
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    
+    return None
+
+# Subarray Sum Equals K
+def subarray_sum(nums, k):
+    count = 0
+    prefix_sum = 0
+    sum_count = {0: 1}
+    
+    for num in nums:
+        prefix_sum += num
+        if prefix_sum - k in sum_count:
+            count += sum_count[prefix_sum - k]
+        sum_count[prefix_sum] = sum_count.get(prefix_sum, 0) + 1
+    
+    return count
+
+# LRU Cache
+class LRUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.cache = {}
+        self.order = []
+    
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        
+        self.order.remove(key)
+        self.order.append(key)
+        return self.cache[key]
+    
+    def put(self, key, value):
+        if key in self.cache:
+            self.order.remove(key)
+        elif len(self.cache) >= self.capacity:
+            lru_key = self.order.pop(0)
+            del self.cache[lru_key]
+        
+        self.cache[key] = value
+        self.order.append(key)`,
+        javascript: `// Two Sum using HashMap
+function twoSum(nums, target) {
+    const seen = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (seen.has(complement)) {
+            return [seen.get(complement), i];
+        }
+        seen.set(nums[i], i);
+    }
+    return [];
+}
+
+// Group Anagrams
+function groupAnagrams(strs) {
+    const anagrams = new Map();
+    for (const s of strs) {
+        const key = s.split('').sort().join('');
+        if (!anagrams.has(key)) {
+            anagrams.set(key, []);
+        }
+        anagrams.get(key).push(s);
+    }
+    return Array.from(anagrams.values());
+}
+
+// First Non-Repeating Character
+function firstNonRepeating(s) {
+    const charCount = new Map();
+    
+    // Count frequencies
+    for (const char of s) {
+        charCount.set(char, (charCount.get(char) || 0) + 1);
+    }
+    
+    // Find first non-repeating
+    for (const char of s) {
+        if (charCount.get(char) === 1) {
+            return char;
+        }
+    }
+    
+    return null;
+}
+
+// Subarray Sum Equals K
+function subarraySum(nums, k) {
+    let count = 0;
+    let prefixSum = 0;
+    const sumCount = new Map([[0, 1]]);
+    
+    for (const num of nums) {
+        prefixSum += num;
+        if (sumCount.has(prefixSum - k)) {
+            count += sumCount.get(prefixSum - k);
+        }
+        sumCount.set(prefixSum, (sumCount.get(prefixSum) || 0) + 1);
+    }
+    
+    return count;
+}
+
+// LRU Cache
+class LRUCache {
+    constructor(capacity) {
+        this.capacity = capacity;
+        this.cache = new Map();
+    }
+    
+    get(key) {
+        if (!this.cache.has(key)) {
+            return -1;
+        }
+        
+        const value = this.cache.get(key);
+        this.cache.delete(key);
+        this.cache.set(key, value);
+        return value;
+    }
+    
+    put(key, value) {
+        if (this.cache.has(key)) {
+            this.cache.delete(key);
+        } else if (this.cache.size >= this.capacity) {
+            const firstKey = this.cache.keys().next().value;
+            this.cache.delete(firstKey);
+        }
+        
+        this.cache.set(key, value);
+    }
+}`,
+      },
+    ],
+  },
+  {
+    id: 'searching-sorting',
+    name: 'Searching & Sorting',
+    description: 'Master binary search and sorting algorithms',
+    icon: '🔍',
+    flashcards: [
+      {
+        id: 'ss-1',
+        topicId: 'searching-sorting',
+        question: 'What is Binary Search?',
+        answer: 'An efficient O(log n) search algorithm for sorted arrays. Repeatedly divides search space in half by comparing middle element.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'ss-2',
+        topicId: 'searching-sorting',
+        question: 'Compare QuickSort vs MergeSort?',
+        answer: 'QuickSort: O(n log n) average, O(n²) worst, O(log n) space, in-place. MergeSort: O(n log n) always, O(n) space, stable.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'ss-3',
+        topicId: 'searching-sorting',
+        question: 'What is a stable sort?',
+        answer: 'A sort that maintains relative order of equal elements. MergeSort and TimSort are stable. QuickSort typically isn\'t.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'ss-4',
+        topicId: 'searching-sorting',
+        question: 'When to use binary search variations?',
+        answer: 'Find first/last occurrence, search rotated array, find peak element, search 2D matrix. All require sorted or partially sorted data.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'ss-ct-1',
+        topicId: 'searching-sorting',
+        title: 'Search and Sort Algorithms',
+        description: 'Essential searching and sorting implementations',
+        python: `# Binary Search
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    
+    while left <= right:
+        mid = left + (right - left) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+
+# Find First and Last Position
+def search_range(nums, target):
+    def find_bound(is_first):
+        left, right = 0, len(nums) - 1
+        result = -1
+        
+        while left <= right:
+            mid = left + (right - left) // 2
+            if nums[mid] == target:
+                result = mid
+                if is_first:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return result
+    
+    return [find_bound(True), find_bound(False)]
+
+# QuickSort
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    
+    return quick_sort(left) + middle + quick_sort(right)
+
+# MergeSort
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+# Search in Rotated Sorted Array
+def search_rotated(nums, target):
+    left, right = 0, len(nums) - 1
+    
+    while left <= right:
+        mid = left + (right - left) // 2
+        
+        if nums[mid] == target:
+            return mid
+        
+        # Left half is sorted
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        # Right half is sorted
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    
+    return -1`,
+        javascript: `// Binary Search
+function binarySearch(arr, target) {
+    let left = 0, right = arr.length - 1;
+    
+    while (left <= right) {
+        const mid = left + Math.floor((right - left) / 2);
+        if (arr[mid] === target) {
+            return mid;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    
+    return -1;
+}
+
+// Find First and Last Position
+function searchRange(nums, target) {
+    function findBound(isFirst) {
+        let left = 0, right = nums.length - 1;
+        let result = -1;
+        
+        while (left <= right) {
+            const mid = left + Math.floor((right - left) / 2);
+            if (nums[mid] === target) {
+                result = mid;
+                if (isFirst) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return result;
+    }
+    
+    return [findBound(true), findBound(false)];
+}
+
+// QuickSort
+function quickSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    
+    const pivot = arr[Math.floor(arr.length / 2)];
+    const left = arr.filter(x => x < pivot);
+    const middle = arr.filter(x => x === pivot);
+    const right = arr.filter(x => x > pivot);
+    
+    return [...quickSort(left), ...middle, ...quickSort(right)];
+}
+
+// MergeSort
+function mergeSort(arr) {
+    if (arr.length <= 1) {
+        return arr;
+    }
+    
+    const mid = Math.floor(arr.length / 2);
+    const left = mergeSort(arr.slice(0, mid));
+    const right = mergeSort(arr.slice(mid));
+    
+    return merge(left, right);
+}
+
+function merge(left, right) {
+    const result = [];
+    let i = 0, j = 0;
+    
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) {
+            result.push(left[i++]);
+        } else {
+            result.push(right[j++]);
+        }
+    }
+    
+    return [...result, ...left.slice(i), ...right.slice(j)];
+}
+
+// Search in Rotated Sorted Array
+function searchRotated(nums, target) {
+    let left = 0, right = nums.length - 1;
+    
+    while (left <= right) {
+        const mid = left + Math.floor((right - left) / 2);
+        
+        if (nums[mid] === target) {
+            return mid;
+        }
+        
+        // Left half is sorted
+        if (nums[left] <= nums[mid]) {
+            if (nums[left] <= target && target < nums[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        // Right half is sorted
+        else {
+            if (nums[mid] < target && target <= nums[right]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+    }
+    
+    return -1;
+}`,
+      },
+    ],
+  },
+  {
+    id: 'stacks-queues',
+    name: 'Stacks & Queues',
+    description: 'LIFO and FIFO data structures for ordered processing',
+    icon: '📚',
+    flashcards: [
+      {
+        id: 'sq-1',
+        topicId: 'stacks-queues',
+        question: 'What is a Stack?',
+        answer: 'LIFO (Last In First Out) data structure. Operations: push (add), pop (remove), peek (view top). All O(1). Used for undo, recursion, parsing.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'sq-2',
+        topicId: 'stacks-queues',
+        question: 'What is a Queue?',
+        answer: 'FIFO (First In First Out) data structure. Operations: enqueue (add), dequeue (remove), front (view first). O(1) ops. Used for BFS, scheduling.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'sq-3',
+        topicId: 'stacks-queues',
+        question: 'What is a Monotonic Stack?',
+        answer: 'A stack that maintains elements in monotonic (increasing/decreasing) order. Used for next greater/smaller element problems.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'sq-ct-1',
+        topicId: 'stacks-queues',
+        title: 'Stack and Queue Patterns',
+        description: 'Common stack and queue applications',
+        python: `# Valid Parentheses
+def is_valid_parentheses(s):
+    stack = []
+    pairs = {'(': ')', '[': ']', '{': '}'}
+    
+    for char in s:
+        if char in pairs:
+            stack.append(char)
+        elif not stack or pairs[stack.pop()] != char:
+            return False
+    
+    return len(stack) == 0
+
+# Daily Temperatures (Monotonic Stack)
+def daily_temperatures(temperatures):
+    result = [0] * len(temperatures)
+    stack = []
+    
+    for i, temp in enumerate(temperatures):
+        while stack and temperatures[stack[-1]] < temp:
+            prev_index = stack.pop()
+            result[prev_index] = i - prev_index
+        stack.append(i)
+    
+    return result
+
+# Implement Queue using Stacks
+class QueueWithStacks:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+    
+    def enqueue(self, x):
+        self.stack1.append(x)
+    
+    def dequeue(self):
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2.pop() if self.stack2 else None
+    
+    def peek(self):
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1] if self.stack2 else None
+
+# Min Stack
+class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []
+    
+    def push(self, x):
+        self.stack.append(x)
+        if not self.min_stack or x <= self.min_stack[-1]:
+            self.min_stack.append(x)
+    
+    def pop(self):
+        if self.stack:
+            val = self.stack.pop()
+            if val == self.min_stack[-1]:
+                self.min_stack.pop()
+            return val
+    
+    def get_min(self):
+        return self.min_stack[-1] if self.min_stack else None
+
+# Sliding Window Maximum (Deque)
+from collections import deque
+
+def max_sliding_window(nums, k):
+    result = []
+    dq = deque()
+    
+    for i in range(len(nums)):
+        # Remove indices outside window
+        while dq and dq[0] < i - k + 1:
+            dq.popleft()
+        
+        # Remove smaller elements
+        while dq and nums[dq[-1]] < nums[i]:
+            dq.pop()
+        
+        dq.append(i)
+        
+        if i >= k - 1:
+            result.append(nums[dq[0]])
+    
+    return result`,
+        javascript: `// Valid Parentheses
+function isValidParentheses(s) {
+    const stack = [];
+    const pairs = {'(': ')', '[': ']', '{': '}'};
+    
+    for (const char of s) {
+        if (char in pairs) {
+            stack.push(char);
+        } else if (stack.length === 0 || pairs[stack.pop()] !== char) {
+            return false;
+        }
+    }
+    
+    return stack.length === 0;
+}
+
+// Daily Temperatures (Monotonic Stack)
+function dailyTemperatures(temperatures) {
+    const result = new Array(temperatures.length).fill(0);
+    const stack = [];
+    
+    for (let i = 0; i < temperatures.length; i++) {
+        while (stack.length > 0 && temperatures[stack[stack.length - 1]] < temperatures[i]) {
+            const prevIndex = stack.pop();
+            result[prevIndex] = i - prevIndex;
+        }
+        stack.push(i);
+    }
+    
+    return result;
+}
+
+// Implement Queue using Stacks
+class QueueWithStacks {
+    constructor() {
+        this.stack1 = [];
+        this.stack2 = [];
+    }
+    
+    enqueue(x) {
+        this.stack1.push(x);
+    }
+    
+    dequeue() {
+        if (this.stack2.length === 0) {
+            while (this.stack1.length > 0) {
+                this.stack2.push(this.stack1.pop());
+            }
+        }
+        return this.stack2.length > 0 ? this.stack2.pop() : null;
+    }
+    
+    peek() {
+        if (this.stack2.length === 0) {
+            while (this.stack1.length > 0) {
+                this.stack2.push(this.stack1.pop());
+            }
+        }
+        return this.stack2.length > 0 ? this.stack2[this.stack2.length - 1] : null;
+    }
+}
+
+// Min Stack
+class MinStack {
+    constructor() {
+        this.stack = [];
+        this.minStack = [];
+    }
+    
+    push(x) {
+        this.stack.push(x);
+        if (this.minStack.length === 0 || x <= this.minStack[this.minStack.length - 1]) {
+            this.minStack.push(x);
+        }
+    }
+    
+    pop() {
+        if (this.stack.length > 0) {
+            const val = this.stack.pop();
+            if (val === this.minStack[this.minStack.length - 1]) {
+                this.minStack.pop();
+            }
+            return val;
+        }
+    }
+    
+    getMin() {
+        return this.minStack.length > 0 ? this.minStack[this.minStack.length - 1] : null;
+    }
+}
+
+// Sliding Window Maximum
+function maxSlidingWindow(nums, k) {
+    const result = [];
+    const dq = [];
+    
+    for (let i = 0; i < nums.length; i++) {
+        // Remove indices outside window
+        while (dq.length > 0 && dq[0] < i - k + 1) {
+            dq.shift();
+        }
+        
+        // Remove smaller elements
+        while (dq.length > 0 && nums[dq[dq.length - 1]] < nums[i]) {
+            dq.pop();
+        }
+        
+        dq.push(i);
+        
+        if (i >= k - 1) {
+            result.push(nums[dq[0]]);
+        }
+    }
+    
+    return result;
+}`,
+      },
+    ],
+  },
+  {
+    id: 'linked-lists',
+    name: 'Linked Lists',
+    description: 'Master singly and doubly linked list operations',
+    icon: '🔗',
+    flashcards: [
+      {
+        id: 'll-1',
+        topicId: 'linked-lists',
+        question: 'What is a Linked List?',
+        answer: 'A linear data structure where elements (nodes) contain data and a pointer to the next node. O(1) insertion/deletion, O(n) access.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'll-2',
+        topicId: 'linked-lists',
+        question: 'Singly vs Doubly Linked List?',
+        answer: 'Singly: one pointer (next). Doubly: two pointers (next, prev). Doubly allows backward traversal but uses more memory.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'll-3',
+        topicId: 'linked-lists',
+        question: 'How to reverse a linked list?',
+        answer: 'Iterative: Use three pointers (prev, curr, next). Recursive: Reverse rest of list, then fix pointers. Both O(n) time, O(1)/O(n) space.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'll-4',
+        topicId: 'linked-lists',
+        question: 'Common linked list patterns?',
+        answer: 'Fast-slow pointers, dummy node, in-place reversal, merge operations, detecting cycles.',
+        difficulty: 'medium',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'll-ct-1',
+        topicId: 'linked-lists',
+        title: 'Linked List Operations',
+        description: 'Essential linked list algorithms',
+        python: `class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+# Reverse Linked List
+def reverse_list(head):
+    prev = None
+    curr = head
+    
+    while curr:
+        next_temp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_temp
+    
+    return prev
+
+# Merge Two Sorted Lists
+def merge_two_lists(l1, l2):
+    dummy = ListNode(0)
+    curr = dummy
+    
+    while l1 and l2:
+        if l1.val <= l2.val:
+            curr.next = l1
+            l1 = l1.next
+        else:
+            curr.next = l2
+            l2 = l2.next
+        curr = curr.next
+    
+    curr.next = l1 if l1 else l2
+    return dummy.next
+
+# Remove Nth Node From End
+def remove_nth_from_end(head, n):
+    dummy = ListNode(0)
+    dummy.next = head
+    fast = slow = dummy
+    
+    # Move fast n steps ahead
+    for _ in range(n):
+        fast = fast.next
+    
+    # Move both until fast reaches end
+    while fast.next:
+        fast = fast.next
+        slow = slow.next
+    
+    # Remove nth node
+    slow.next = slow.next.next
+    return dummy.next
+
+# Reorder List (L0→Ln→L1→Ln-1→L2→Ln-2→...)
+def reorder_list(head):
+    if not head or not head.next:
+        return
+    
+    # Find middle
+    slow = fast = head
+    while fast.next and fast.next.next:
+        slow = slow.next
+        fast = fast.next.next
+    
+    # Reverse second half
+    second = slow.next
+    slow.next = None
+    second = reverse_list(second)
+    
+    # Merge two halves
+    first = head
+    while second:
+        temp1 = first.next
+        temp2 = second.next
+        first.next = second
+        second.next = temp1
+        first = temp1
+        second = temp2
+
+# Add Two Numbers
+def add_two_numbers(l1, l2):
+    dummy = ListNode(0)
+    curr = dummy
+    carry = 0
+    
+    while l1 or l2 or carry:
+        val1 = l1.val if l1 else 0
+        val2 = l2.val if l2 else 0
+        
+        total = val1 + val2 + carry
+        carry = total // 10
+        curr.next = ListNode(total % 10)
+        
+        curr = curr.next
+        l1 = l1.next if l1 else None
+        l2 = l2.next if l2 else None
+    
+    return dummy.next`,
+        javascript: `class ListNode {
+    constructor(val = 0, next = null) {
+        this.val = val;
+        this.next = next;
+    }
+}
+
+// Reverse Linked List
+function reverseList(head) {
+    let prev = null;
+    let curr = head;
+    
+    while (curr) {
+        const nextTemp = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = nextTemp;
+    }
+    
+    return prev;
+}
+
+// Merge Two Sorted Lists
+function mergeTwoLists(l1, l2) {
+    const dummy = new ListNode(0);
+    let curr = dummy;
+    
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
+            curr.next = l1;
+            l1 = l1.next;
+        } else {
+            curr.next = l2;
+            l2 = l2.next;
+        }
+        curr = curr.next;
+    }
+    
+    curr.next = l1 || l2;
+    return dummy.next;
+}
+
+// Remove Nth Node From End
+function removeNthFromEnd(head, n) {
+    const dummy = new ListNode(0);
+    dummy.next = head;
+    let fast = dummy;
+    let slow = dummy;
+    
+    // Move fast n steps ahead
+    for (let i = 0; i < n; i++) {
+        fast = fast.next;
+    }
+    
+    // Move both until fast reaches end
+    while (fast.next) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    
+    // Remove nth node
+    slow.next = slow.next.next;
+    return dummy.next;
+}
+
+// Reorder List
+function reorderList(head) {
+    if (!head || !head.next) {
+        return;
+    }
+    
+    // Find middle
+    let slow = head;
+    let fast = head;
+    while (fast.next && fast.next.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    
+    // Reverse second half
+    let second = slow.next;
+    slow.next = null;
+    second = reverseList(second);
+    
+    // Merge two halves
+    let first = head;
+    while (second) {
+        const temp1 = first.next;
+        const temp2 = second.next;
+        first.next = second;
+        second.next = temp1;
+        first = temp1;
+        second = temp2;
+    }
+}
+
+// Add Two Numbers
+function addTwoNumbers(l1, l2) {
+    const dummy = new ListNode(0);
+    let curr = dummy;
+    let carry = 0;
+    
+    while (l1 || l2 || carry) {
+        const val1 = l1 ? l1.val : 0;
+        const val2 = l2 ? l2.val : 0;
+        
+        const total = val1 + val2 + carry;
+        carry = Math.floor(total / 10);
+        curr.next = new ListNode(total % 10);
+        
+        curr = curr.next;
+        l1 = l1 ? l1.next : null;
+        l2 = l2 ? l2.next : null;
+    }
+    
+    return dummy.next;
+}`,
+      },
+    ],
+  },
+  {
+    id: 'heaps',
+    name: 'Heaps',
+    description: 'Priority queues and heap data structure operations',
+    icon: '⛰️',
+    flashcards: [
+      {
+        id: 'hp-1',
+        topicId: 'heaps',
+        question: 'What is a Heap?',
+        answer: 'A complete binary tree where parent is always larger (max heap) or smaller (min heap) than children. Used for priority queues.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'hp-2',
+        topicId: 'heaps',
+        question: 'Heap operations complexity?',
+        answer: 'Insert: O(log n), Extract min/max: O(log n), Peek: O(1), Heapify: O(n). Building heap from array is O(n).',
+        difficulty: 'medium',
+      },
+      {
+        id: 'hp-3',
+        topicId: 'heaps',
+        question: 'When to use heaps?',
+        answer: 'Top K elements, median finding, task scheduling, merge K sorted lists, Dijkstra\'s algorithm.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'hp-4',
+        topicId: 'heaps',
+        question: 'Heap vs BST?',
+        answer: 'Heap: faster insertion/deletion O(log n), only min/max access. BST: sorted order, range queries possible.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'hp-ct-1',
+        topicId: 'heaps',
+        title: 'Heap Applications',
+        description: 'Common heap-based algorithms',
+        python: `import heapq
+
+# Kth Largest Element
+def find_kth_largest(nums, k):
+    # Min heap of size k
+    heap = []
+    for num in nums:
+        heapq.heappush(heap, num)
+        if len(heap) > k:
+            heapq.heappop(heap)
+    return heap[0]
+
+# Top K Frequent Elements
+def top_k_frequent(nums, k):
+    from collections import Counter
+    count = Counter(nums)
+    # Use negative frequency for max heap
+    return [num for num, _ in count.most_common(k)]
+
+# Merge K Sorted Lists
+def merge_k_lists(lists):
+    heap = []
+    dummy = ListNode(0)
+    curr = dummy
+    
+    # Initialize heap
+    for i, lst in enumerate(lists):
+        if lst:
+            heapq.heappush(heap, (lst.val, i, lst))
+    
+    # Extract min and add next
+    while heap:
+        val, i, node = heapq.heappop(heap)
+        curr.next = node
+        curr = curr.next
+        if node.next:
+            heapq.heappush(heap, (node.next.val, i, node.next))
+    
+    return dummy.next
+
+# Find Median from Data Stream
+class MedianFinder:
+    def __init__(self):
+        self.small = []  # Max heap (negate values)
+        self.large = []  # Min heap
+    
+    def add_num(self, num):
+        heapq.heappush(self.small, -num)
+        
+        # Balance heaps
+        if self.small and self.large and -self.small[0] > self.large[0]:
+            val = -heapq.heappop(self.small)
+            heapq.heappush(self.large, val)
+        
+        # Maintain size property
+        if len(self.small) > len(self.large) + 1:
+            val = -heapq.heappop(self.small)
+            heapq.heappush(self.large, val)
+        if len(self.large) > len(self.small):
+            val = heapq.heappop(self.large)
+            heapq.heappush(self.small, -val)
+    
+    def find_median(self):
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        return (-self.small[0] + self.large[0]) / 2
+
+# Task Scheduler
+def least_interval(tasks, n):
+    from collections import Counter
+    count = Counter(tasks)
+    max_freq = max(count.values())
+    max_count = sum(1 for c in count.values() if c == max_freq)
+    
+    return max(len(tasks), (max_freq - 1) * (n + 1) + max_count)`,
+        javascript: `// Note: JavaScript doesn't have built-in heap
+// Using array-based min heap implementation
+
+class MinHeap {
+    constructor() {
+        this.heap = [];
+    }
+    
+    push(val) {
+        this.heap.push(val);
+        this.bubbleUp(this.heap.length - 1);
+    }
+    
+    pop() {
+        if (this.heap.length === 1) return this.heap.pop();
+        const min = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown(0);
+        return min;
+    }
+    
+    peek() {
+        return this.heap[0];
+    }
+    
+    size() {
+        return this.heap.length;
+    }
+    
+    bubbleUp(idx) {
+        while (idx > 0) {
+            const parent = Math.floor((idx - 1) / 2);
+            if (this.heap[parent] <= this.heap[idx]) break;
+            [this.heap[parent], this.heap[idx]] = [this.heap[idx], this.heap[parent]];
+            idx = parent;
+        }
+    }
+    
+    bubbleDown(idx) {
+        while (true) {
+            let smallest = idx;
+            const left = 2 * idx + 1;
+            const right = 2 * idx + 2;
+            
+            if (left < this.heap.length && this.heap[left] < this.heap[smallest]) {
+                smallest = left;
+            }
+            if (right < this.heap.length && this.heap[right] < this.heap[smallest]) {
+                smallest = right;
+            }
+            if (smallest === idx) break;
+            
+            [this.heap[idx], this.heap[smallest]] = [this.heap[smallest], this.heap[idx]];
+            idx = smallest;
+        }
+    }
+}
+
+// Kth Largest Element
+function findKthLargest(nums, k) {
+    const heap = new MinHeap();
+    for (const num of nums) {
+        heap.push(num);
+        if (heap.size() > k) {
+            heap.pop();
+        }
+    }
+    return heap.peek();
+}
+
+// Find Median from Data Stream
+class MedianFinder {
+    constructor() {
+        this.small = [];  // Max heap (negate values)
+        this.large = [];  // Min heap
+    }
+    
+    addNum(num) {
+        // Simplified implementation
+        this.small.push(num);
+        this.small.sort((a, b) => b - a);
+        
+        if (this.small.length > this.large.length + 1) {
+            this.large.push(this.small.shift());
+            this.large.sort((a, b) => a - b);
+        }
+    }
+    
+    findMedian() {
+        if (this.small.length > this.large.length) {
+            return this.small[0];
+        }
+        return (this.small[0] + this.large[0]) / 2;
+    }
+}`,
+      },
+    ],
+  },
+  {
+    id: 'recursion-backtracking',
+    name: 'Recursion & Backtracking',
+    description: 'Solve problems by exploring all possibilities recursively',
+    icon: '🔁',
+    flashcards: [
+      {
+        id: 'rb-1',
+        topicId: 'recursion-backtracking',
+        question: 'What is Recursion?',
+        answer: 'A function that calls itself with a smaller problem until reaching a base case. Essential for divide-and-conquer, tree traversal.',
+        difficulty: 'easy',
+      },
+      {
+        id: 'rb-2',
+        topicId: 'recursion-backtracking',
+        question: 'What is Backtracking?',
+        answer: 'A recursive algorithm that explores all possibilities by making choices and undoing them if they lead to invalid solutions.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'rb-3',
+        topicId: 'recursion-backtracking',
+        question: 'Common backtracking problems?',
+        answer: 'N-Queens, Sudoku solver, permutations, combinations, subsets, word search, palindrome partitioning.',
+        difficulty: 'medium',
+      },
+      {
+        id: 'rb-4',
+        topicId: 'recursion-backtracking',
+        question: 'Recursion vs Iteration?',
+        answer: 'Recursion: cleaner code, natural for trees/graphs, O(n) stack space. Iteration: O(1) space, no stack overflow risk.',
+        difficulty: 'hard',
+      },
+    ],
+    codeTemplates: [
+      {
+        id: 'rb-ct-1',
+        topicId: 'recursion-backtracking',
+        title: 'Recursion and Backtracking Patterns',
+        description: 'Classic recursive and backtracking algorithms',
+        python: `# Generate All Subsets
+def subsets(nums):
+    result = []
+    
+    def backtrack(start, path):
+        result.append(path[:])
+        for i in range(start, len(nums)):
+            path.append(nums[i])
+            backtrack(i + 1, path)
+            path.pop()
+    
+    backtrack(0, [])
+    return result
+
+# Generate Permutations
+def permute(nums):
+    result = []
+    
+    def backtrack(path):
+        if len(path) == len(nums):
+            result.append(path[:])
+            return
+        
+        for num in nums:
+            if num not in path:
+                path.append(num)
+                backtrack(path)
+                path.pop()
+    
+    backtrack([])
+    return result
+
+# Combination Sum
+def combination_sum(candidates, target):
+    result = []
+    
+    def backtrack(start, target, path):
+        if target == 0:
+            result.append(path[:])
+            return
+        if target < 0:
+            return
+        
+        for i in range(start, len(candidates)):
+            path.append(candidates[i])
+            backtrack(i, target - candidates[i], path)
+            path.pop()
+    
+    backtrack(0, target, [])
+    return result
+
+# N-Queens
+def solve_n_queens(n):
+    result = []
+    board = [['.'] * n for _ in range(n)]
+    
+    def is_valid(row, col):
+        # Check column
+        for i in range(row):
+            if board[i][col] == 'Q':
+                return False
+        
+        # Check diagonals
+        i, j = row - 1, col - 1
+        while i >= 0 and j >= 0:
+            if board[i][j] == 'Q':
+                return False
+            i -= 1
+            j -= 1
+        
+        i, j = row - 1, col + 1
+        while i >= 0 and j < n:
+            if board[i][j] == 'Q':
+                return False
+            i -= 1
+            j += 1
+        
+        return True
+    
+    def backtrack(row):
+        if row == n:
+            result.append([''.join(row) for row in board])
+            return
+        
+        for col in range(n):
+            if is_valid(row, col):
+                board[row][col] = 'Q'
+                backtrack(row + 1)
+                board[row][col] = '.'
+    
+    backtrack(0)
+    return result
+
+# Word Search
+def exist(board, word):
+    rows, cols = len(board), len(board[0])
+    
+    def backtrack(r, c, index):
+        if index == len(word):
+            return True
+        
+        if (r < 0 or r >= rows or c < 0 or c >= cols or 
+            board[r][c] != word[index]):
+            return False
+        
+        temp = board[r][c]
+        board[r][c] = '#'
+        
+        found = (backtrack(r+1, c, index+1) or
+                 backtrack(r-1, c, index+1) or
+                 backtrack(r, c+1, index+1) or
+                 backtrack(r, c-1, index+1))
+        
+        board[r][c] = temp
+        return found
+    
+    for r in range(rows):
+        for c in range(cols):
+            if backtrack(r, c, 0):
+                return True
+    return False`,
+        javascript: `// Generate All Subsets
+function subsets(nums) {
+    const result = [];
+    
+    function backtrack(start, path) {
+        result.push([...path]);
+        for (let i = start; i < nums.length; i++) {
+            path.push(nums[i]);
+            backtrack(i + 1, path);
+            path.pop();
+        }
+    }
+    
+    backtrack(0, []);
+    return result;
+}
+
+// Generate Permutations
+function permute(nums) {
+    const result = [];
+    
+    function backtrack(path) {
+        if (path.length === nums.length) {
+            result.push([...path]);
+            return;
+        }
+        
+        for (const num of nums) {
+            if (!path.includes(num)) {
+                path.push(num);
+                backtrack(path);
+                path.pop();
+            }
+        }
+    }
+    
+    backtrack([]);
+    return result;
+}
+
+// Combination Sum
+function combinationSum(candidates, target) {
+    const result = [];
+    
+    function backtrack(start, target, path) {
+        if (target === 0) {
+            result.push([...path]);
+            return;
+        }
+        if (target < 0) {
+            return;
+        }
+        
+        for (let i = start; i < candidates.length; i++) {
+            path.push(candidates[i]);
+            backtrack(i, target - candidates[i], path);
+            path.pop();
+        }
+    }
+    
+    backtrack(0, target, []);
+    return result;
+}
+
+// N-Queens
+function solveNQueens(n) {
+    const result = [];
+    const board = Array(n).fill().map(() => Array(n).fill('.'));
+    
+    function isValid(row, col) {
+        // Check column
+        for (let i = 0; i < row; i++) {
+            if (board[i][col] === 'Q') {
+                return false;
+            }
+        }
+        
+        // Check diagonals
+        let i = row - 1, j = col - 1;
+        while (i >= 0 && j >= 0) {
+            if (board[i][j] === 'Q') return false;
+            i--;
+            j--;
+        }
+        
+        i = row - 1;
+        j = col + 1;
+        while (i >= 0 && j < n) {
+            if (board[i][j] === 'Q') return false;
+            i--;
+            j++;
+        }
+        
+        return true;
+    }
+    
+    function backtrack(row) {
+        if (row === n) {
+            result.push(board.map(row => row.join('')));
+            return;
+        }
+        
+        for (let col = 0; col < n; col++) {
+            if (isValid(row, col)) {
+                board[row][col] = 'Q';
+                backtrack(row + 1);
+                board[row][col] = '.';
+            }
+        }
+    }
+    
+    backtrack(0);
+    return result;
+}
+
+// Word Search
+function exist(board, word) {
+    const rows = board.length;
+    const cols = board[0].length;
+    
+    function backtrack(r, c, index) {
+        if (index === word.length) {
+            return true;
+        }
+        
+        if (r < 0 || r >= rows || c < 0 || c >= cols || 
+            board[r][c] !== word[index]) {
+            return false;
+        }
+        
+        const temp = board[r][c];
+        board[r][c] = '#';
+        
+        const found = backtrack(r+1, c, index+1) ||
+                      backtrack(r-1, c, index+1) ||
+                      backtrack(r, c+1, index+1) ||
+                      backtrack(r, c-1, index+1);
+        
+        board[r][c] = temp;
+        return found;
+    }
+    
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if (backtrack(r, c, 0)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}`,
+      },
+    ],
+  },
 ];
 
 export const quizQuestions: QuizQuestion[] = [

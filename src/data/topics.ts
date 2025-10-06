@@ -1,4 +1,5 @@
 import { Topic, QuizQuestion } from '../types';
+import { neetcodeBlind75 } from './neetcode-blind75';
 
 export const topics: Topic[] = [
   {
@@ -5645,6 +5646,7 @@ Round 4: Questions for interviewer (5 min)
       },
     ],
   },
+  neetcodeBlind75, // Import the NeetCode Blind 75 topic
 ];
 
 export const quizQuestions: QuizQuestion[] = [

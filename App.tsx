@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ThemeProvider, useTheme } from './src/context/ThemeContext';
@@ -10,6 +10,7 @@ import { FlashcardsScreen } from './src/screens/FlashcardsScreen';
 import { CodeTemplatesScreen } from './src/screens/CodeTemplatesScreen';
 import { DailyQuizScreen } from './src/screens/DailyQuizScreen';
 import { ProgressScreen } from './src/screens/ProgressScreen';
+import AnimatedSplash from './src/components/AnimatedSplash';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -68,6 +69,12 @@ function AppNavigator() {
 }
 
 export default function App() {
+  const [appReady, setAppReady] = useState(false);
+
+  if (!appReady) {
+    return <AnimatedSplash onFinish={() => setAppReady(true)} />;
+  }
+
   return (
     <ThemeProvider>
       <ProgressProvider>

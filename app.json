@@ -23,10 +23,17 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#1a1a2e"
       },
-      "package": "com.algoflash.app"
+      "package": "com.algoflash.app",
+      "versionCode": 1,
+      "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2d628f64-daf3-4674-a418-6b082b1fb2fa"
+      }
     }
   }
 }

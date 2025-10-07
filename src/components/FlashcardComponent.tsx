@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Animated,
   Dimensions,
+  Linking,
 } from 'react-native';
 import { Flashcard as FlashcardType } from '../types';
 import { useTheme } from '../context/ThemeContext';
@@ -70,6 +71,84 @@ export const FlashcardComponent: React.FC<Props> = ({ flashcard }) => {
   };
 
   const isCompleted = isFlashcardCompleted(flashcard.id);
+  const handleUrlPress = async (url: string) => {
+    try {
+      await Linking.openURL(url);
+    } catch (error) {
+      console.error('Failed to open URL:', error);
+    }
+  };
+
+  const renderAnswerLines = () => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const lines = flashcard.answer.split('\n');
+
+    return lines.map((line, index) => {
+      const matches = [...line.matchAll(urlRegex)];
+
+      if (matches.length === 0) {
+        return (
+          <Text
+            key={index}
+            style={[
+              styles.content,
+              { color: colors.text },
+              index !== lines.length - 1 ? styles.answerLineSpacing : null,
+            ]}
+          >
+            {line}
+          </Text>
+        );
+      }
+
+      const nodes: React.ReactNode[] = [];
+      let lastIndex = 0;
+
+      matches.forEach((match, matchIndex) => {
+        const start = match.index ?? 0;
+        const rawUrl = match[0];
+        const sanitizedUrl = rawUrl.replace(/[),.]+$/, '');
+        const trailing = rawUrl.slice(sanitizedUrl.length);
+
+        if (start > lastIndex) {
+          nodes.push(line.substring(lastIndex, start));
+        }
+
+        nodes.push(
+          <Text
+            key={`url-${index}-${matchIndex}`}
+            style={[styles.link, { color: colors.primary }]}
+            onPress={() => handleUrlPress(sanitizedUrl)}
+          >
+            {sanitizedUrl}
+          </Text>
+        );
+
+        if (trailing) {
+          nodes.push(trailing);
+        }
+
+        lastIndex = start + rawUrl.length;
+      });
+
+      if (lastIndex < line.length) {
+        nodes.push(line.substring(lastIndex));
+      }
+
+      return (
+        <Text
+          key={index}
+          style={[
+            styles.content,
+            { color: colors.text },
+            index !== lines.length - 1 ? styles.answerLineSpacing : null,
+          ]}
+        >
+          {nodes}
+        </Text>
+      );
+    });
+  };
 
   return (
     <TouchableOpacity
@@ -110,7 +189,7 @@ export const FlashcardComponent: React.FC<Props> = ({ flashcard }) => {
           <Text style={styles.badgeText}>{flashcard.difficulty}</Text>
         </View>
         <Text style={[styles.label, { color: colors.textSecondary }]}>Answer</Text>
-        <Text style={[styles.content, { color: colors.text }]}>{flashcard.answer}</Text>
+        <View style={styles.answerLines}>{renderAnswerLines()}</View>
         <Text style={[styles.hint, { color: colors.textSecondary }]}>Tap to flip back</Text>
       </Animated.View>
     </TouchableOpacity>
@@ -179,6 +258,15 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 28,
     textAlign: 'center',
+  },
+  answerLines: {
+    alignItems: 'center',
+  },
+  answerLineSpacing: {
+    marginBottom: 8,
+  },
+  link: {
+    textDecorationLine: 'underline',
   },
   hint: {
     position: 'absolute',

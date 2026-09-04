@@ -2,6 +2,15 @@
 
 A React Native + Expo mobile app that teaches coding concepts through interactive flashcards and code templates.
 
+## 📚 Database Learning Roadmap (NEW)
+
+Structured curriculum for learning **databases, SQL, and PostgreSQL** — from first principles through building real applications and large-scale system design.
+
+- **[Start here →](docs/database-learning/README.md)**
+- [Full roadmap (8 phases)](docs/database-learning/ROADMAP.md)
+- [SQL examples](sql/examples/)
+- [Project briefs](projects/)
+
 ## 📱 Features
 
 ### Core Features
